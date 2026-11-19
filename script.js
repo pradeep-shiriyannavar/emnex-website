@@ -44,28 +44,37 @@ document.addEventListener("DOMContentLoaded", function () {
         submitBtn.disabled = false;
       }, 1500);
 
-      /* 
-            -- ACTUAL FORM SUBMISSION CODE (Uncomment when Formspree is set up) --
-            fetch(form.action, {
-                method: 'POST',
-                body: new FormData(form),
-                headers: {
-                    'Accept': 'application/json'
-                }
-            }).then(response => {
-                if (response.ok) {
-                    showMessage('Thank you! Your request has been sent. We will contact you shortly.', 'text-success');
-                    form.reset();
-                } else {
-                    showMessage('Oops! There was a problem submitting your form.', 'text-danger');
-                }
-            }).catch(error => {
-                showMessage('Oops! There was a problem submitting your form.', 'text-danger');
-            }).finally(() => {
-                submitBtn.innerHTML = originalText;
-                submitBtn.disabled = false;
-            });
-            */
+      fetch(form.action, {
+        method: "POST",
+        body: new FormData(form),
+        headers: {
+          Accept: "application/json",
+        },
+      })
+        .then((response) => {
+          if (response.ok) {
+            showMessage(
+              "Thank you! Your request has been sent. We will contact you shortly.",
+              "text-success",
+            );
+            form.reset();
+          } else {
+            showMessage(
+              "Oops! There was a problem submitting your form.",
+              "text-danger",
+            );
+          }
+        })
+        .catch((error) => {
+          showMessage(
+            "Oops! There was a problem submitting your form.",
+            "text-danger",
+          );
+        })
+        .finally(() => {
+          submitBtn.innerHTML = originalText;
+          submitBtn.disabled = false;
+        });
     });
   }
 
